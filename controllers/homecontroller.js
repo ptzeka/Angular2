@@ -4,7 +4,7 @@ module.exports = function($app,logService){
 		
 		//var profileModel = req.session.profile.toViewModel();
 		
-		res.render("react", {});
+		res.render("home", {});
 		
 	});
 }
