@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "dist/app",
+    "target": "ES5",
+    "module": "system",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "removeComments": false,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "lib":["es2015", "es2015.iterable"],
+    "types" : [
+      "core-js"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
