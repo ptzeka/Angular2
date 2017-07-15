@@ -10,7 +10,7 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "lib":["es2015", "es2015.iterable"],
+    "lib":["es2015", "es2015.iterable","dom"],
     "types" : [
       "core-js"
     ]
