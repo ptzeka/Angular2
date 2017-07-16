@@ -15,6 +15,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 //pages
 var MasterComponent_1 = require("./components/MasterComponent");
 var CartComponent_1 = require("./components/CartComponent");
+var CartItemComponent_1 = require("./components/CartItemComponent");
 var HomeComponent_1 = require("./components/HomeComponent");
 var PageNotFoundComponent_1 = require("./components/PageNotFoundComponent");
 //services
@@ -44,19 +45,22 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
-                router_1.RouterModule.forRoot(appRoutes, { enableTracing: true } // <-- debugging purposes only
+                router_1.RouterModule.forRoot(appRoutes, { enableTracing: false } // <-- debugging purposes only
                 )
             ],
             declarations: [
                 MasterComponent_1.MasterComponent,
                 CartComponent_1.CartComponent,
+                CartItemComponent_1.CartItemComponent,
                 HomeComponent_1.HomeComponent,
                 PageNotFoundComponent_1.PageNotFoundComponent
             ],
             providers: [
                 CartService_1.CartService
             ],
-            exports: [],
+            exports: [
+                CartItemComponent_1.CartItemComponent
+            ],
             bootstrap: [MasterComponent_1.MasterComponent]
         })
     ], AppModule);

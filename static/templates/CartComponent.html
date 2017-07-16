@@ -1,1 +1,5 @@
-<h1>Hello {{name}}</h1>
+
+<h1>Your cart</h1>
+<div *ngFor="let item of cart.items">  
+    <cart-item [item]=item></cart-item>
+</div>

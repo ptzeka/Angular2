@@ -9,6 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 //pages
 import { MasterComponent } from './components/MasterComponent';
 import { CartComponent } from './components/CartComponent';
+import { CartItemComponent } from './components/CartItemComponent';
 import { HomeComponent } from './components/HomeComponent';
 import { PageNotFoundComponent } from './components/PageNotFoundComponent';
 
@@ -41,19 +42,22 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     )
   ],
   declarations: [
     MasterComponent,
     CartComponent,
+    CartItemComponent,
     HomeComponent,
     PageNotFoundComponent
   ],
   providers: [
     CartService
   ],
-  exports: [ ],
+  exports: [ 
+    CartItemComponent
+  ],
   bootstrap: [ MasterComponent ]
 })
 export class AppModule { }
