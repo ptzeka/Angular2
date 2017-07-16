@@ -9,6 +9,7 @@ import { AppComponent } from './components/AppComponent';
 @NgModule({
   imports: [
     BrowserModule,
+    RouterModule
   ],
   declarations: [
     AppComponent

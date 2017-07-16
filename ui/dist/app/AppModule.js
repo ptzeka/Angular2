@@ -10,6 +10,7 @@ require("zone.js");
 require("reflect-metadata");
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var router_1 = require("@angular/router");
 var AppComponent_1 = require("./components/AppComponent");
 var AppModule = (function () {
     function AppModule() {
@@ -18,6 +19,7 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
+                router_1.RouterModule
             ],
             declarations: [
                 AppComponent_1.AppComponent

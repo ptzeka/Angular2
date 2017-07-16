@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';  
 @Component({ 
    selector: 'my-app', 
-   template: '<h1>Hello {{name}}</h1>'
+   styleUrls: ['dist/css/components/AppComponent.css'],
+   templateUrl: '/templates/AppComponent.html'
 }) 
 export class AppComponent { 
     constructor() {

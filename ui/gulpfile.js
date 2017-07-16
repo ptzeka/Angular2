@@ -37,8 +37,8 @@ var browserify = require('browserify');
 gulp.task('css', function() {
   gulp.src('./css/**/*.css')
     .pipe(minifyCSS())
-    .pipe(concat('styles.css'))
-    .pipe(rename('styles.min.css'))
+    //.pipe(concat('styles.css'))
+    //.pipe(rename('styles.min.css'))
     .pipe(gulp.dest('../static/dist/css'))
 });
 
@@ -93,11 +93,10 @@ gulp.task('compile', function () {
 
 //bundle
 gulp.task("build",["compile"],function(){
-    var browserified = browserify("./dist/app/main.js")
+    return browserify("./dist/app/main.js")
     .bundle()
     .pipe(source('main.js'))
     .pipe(gulp.dest('../static/dist/app'));
-    return browserified;
 })
 
 //clean
@@ -140,6 +139,7 @@ gulp.task('test', function (done) {
 /* Watch Files For Changes*/
 gulp.task('watch', function() {
     gulp.watch('./css/*.css', ['css']);
+    gulp.watch('./css/**/*.css', ['css']);
     gulp.watch('./scripts/*.ts',['build'])
     gulp.watch('./scripts/**/*.ts',['build'])
 });
