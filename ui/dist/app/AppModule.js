@@ -8,10 +8,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 require("zone.js");
 require("reflect-metadata");
+//infrastructure
+var router_1 = require("@angular/router");
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
-var router_1 = require("@angular/router");
-var AppComponent_1 = require("./components/AppComponent");
+//pages
+var MasterComponent_1 = require("./components/MasterComponent");
+var CartComponent_1 = require("./components/CartComponent");
+var HomeComponent_1 = require("./components/HomeComponent");
+var PageNotFoundComponent_1 = require("./components/PageNotFoundComponent");
+//services
+var CartService_1 = require("./services/CartService");
+var appRoutes = [
+    {
+        path: 'cart',
+        component: CartComponent_1.CartComponent
+    },
+    {
+        path: "404",
+        component: PageNotFoundComponent_1.PageNotFoundComponent
+    },
+    {
+        path: '',
+        component: HomeComponent_1.HomeComponent
+    },
+    {
+        path: '**',
+        redirectTo: "404"
+    }
+];
 var AppModule = (function () {
     function AppModule() {
     }
@@ -19,13 +44,20 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
-                router_1.RouterModule
+                router_1.RouterModule.forRoot(appRoutes, { enableTracing: true } // <-- debugging purposes only
+                )
             ],
             declarations: [
-                AppComponent_1.AppComponent
+                MasterComponent_1.MasterComponent,
+                CartComponent_1.CartComponent,
+                HomeComponent_1.HomeComponent,
+                PageNotFoundComponent_1.PageNotFoundComponent
             ],
-            exports: [AppComponent_1.AppComponent],
-            bootstrap: [AppComponent_1.AppComponent]
+            providers: [
+                CartService_1.CartService
+            ],
+            exports: [],
+            bootstrap: [MasterComponent_1.MasterComponent]
         })
     ], AppModule);
     return AppModule;
