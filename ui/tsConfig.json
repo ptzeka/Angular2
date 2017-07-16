@@ -2,19 +2,25 @@
   "compilerOptions": {
     "outDir": "dist/app",
     "target": "ES5",
-    "module": "system",
+    "module_0": "system",
+    "module": "commonjs",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "removeComments": false,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
     "lib":["es2015", "es2015.iterable","dom"],
-    "types" : [
+    "outFile_0": "main.js",
+    "types" : [  
       "core-js"
     ]
   },
+  "filesGlob": [
+    "app/**/*.ts",
+    "typings/**/*.d.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

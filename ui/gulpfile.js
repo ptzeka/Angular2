@@ -14,9 +14,7 @@ var rename = require('gulp-rename');
 var mocha = require('gulp-mocha');
 var include = require("gulp-include");
 var minifyCSS = require('gulp-minify-css');
-var browserify = require('browserify');
 var watchify = require('watchify');
-var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var cache = require('gulp-cache');
 var babel = require('gulp-babel');
@@ -24,6 +22,7 @@ var fs = require("fs");
 const typescript = require('gulp-typescript');
 const del = require('del');
 const tscConfig = require('./tsconfig.json');
+var browserify = require('browserify');
 
 //Lint Task
 //gulp.task('lint', function() {
@@ -43,6 +42,28 @@ gulp.task('css', function() {
     .pipe(gulp.dest('../static/dist/css'))
 });
 
+gulp.task('copy:lib', function () {
+    var libs = [
+        '@angular'
+    ];
+
+    var promises = [];
+
+    libs.forEach(function (lib) {
+      promises.push(new Promise(function(resolve,reject) {
+        var pipeline = gulp
+            .src('./node_modules/' + lib + '/**/*')
+            .pipe(gulp.dest('../static/' + lib));
+
+        pipeline.on('end', function () {
+            resolve();
+        });
+      }));
+    });
+
+    return Promise.all(promises);
+});
+
 /*
 gulp.task('build', function () {
   return browserify("./scripts/main.js")
@@ -56,12 +77,34 @@ gulp.task('build', function () {
 */
 
 // TypeScript compile
+//gulp.task('compile', function () {
+//  return gulp
+//    .src(['./scripts/*.ts','./scripts/**/*.ts'])
+//    .pipe(typescript(tscConfig.compilerOptions))
+//    .pipe(gulp.dest('../static/dist/app'));
+//});
+
+// TypeScript compile
 gulp.task('compile', function () {
-  return gulp
-    .src('./scripts/main.ts')
+    return gulp.src(['./scripts/*.ts','./scripts/**/*.ts'])
     .pipe(typescript(tscConfig.compilerOptions))
-    .pipe(gulp.dest('../static/dist/app'));
+    .pipe(gulp.dest('./dist/app'));
 });
+
+//bundle
+gulp.task("build",["compile"],function(){
+    var browserified = browserify("./dist/app/main.js")
+    .bundle()
+    .pipe(source('main.js'))
+    .pipe(gulp.dest('../static/dist/app'));
+    return browserified;
+})
+
+//clean
+gulp.task("clean",function(){
+  return del("./dist/app");
+})
+
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
@@ -97,20 +140,21 @@ gulp.task('test', function (done) {
 /* Watch Files For Changes*/
 gulp.task('watch', function() {
     gulp.watch('./css/*.css', ['css']);
-    gulp.watch('./scripts/*.ts',['compile'])
-    gulp.watch('./scripts/**/*.ts',['compile'])
+    gulp.watch('./scripts/*.ts',['build'])
+    gulp.watch('./scripts/**/*.ts',['build'])
 });
 
 gulp.task('clearCache', function() {
   cache.clearAll();
+  del("./dist/app");
 });
 
 // Default Task
-gulp.task('default', ['css', 
+gulp.task('default', ['css',
                       'clearCache',
                       'scripts',
                       //'test',
-                      'compile',
+                      'build',
                       'watch']);
 
 function oneError (error) {
