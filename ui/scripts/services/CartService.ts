@@ -48,6 +48,15 @@ export class CartService {
     }
     async updateCartAsync(request:CartModel) : Promise<CartModel>
     {
+        request.items.forEach(item => {
+            const match = this.cart.items.filter(it=> it.itemKey == item.itemKey)[0];
+            if(match)
+            {
+                match.quantity = item.quantity;
+                match.price.extendedPrice = item.quantity * match.price.unitPrice;
+                match.price.extendedPriceFormatted = "$" + match.price.extendedPrice;
+            }
+        })
         return this.cart;
     }
 }

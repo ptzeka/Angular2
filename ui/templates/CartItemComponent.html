@@ -1,6 +1,17 @@
 <tr ng-if="item">
     <td>
+        {{item.product.imageUrl}}<br/>
+        {{item.product.friendlyName}}<br/>
         {{item.product.productCode}}
-        {{item.product.friendlyName}}
+    </td>
+    <td>
+        {{item.price.unitPriceFormatted}}
+        <br/>
+        Quantity: <input ngModel #quantity [(ngModel)]=item.quantity type="text" />
+        <br/>
+        <button type="submit" (click)="setSubmitType('update-'+item.itemKey)"  [value]="'update-'+item.itemKey">Update</button>
+    </td>
+     <td>
+        {{item.price.extendedPrice}}
     </td>
 </tr>

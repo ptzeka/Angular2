@@ -9,8 +9,10 @@ import {CartItemModel} from '../models/CartItemModel';
 })  
 export class CartItemComponent { 
     @Input()
-    item: CartItemModel
+    public item: CartItemModel
+    @Input()
+    public setSubmitType: Function
     constructor() {
-        console.log(this.item);
+        
     }
 } 

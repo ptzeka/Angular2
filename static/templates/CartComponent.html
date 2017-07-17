@@ -1,5 +1,16 @@
 
 <h1>Your cart</h1>
-<div *ngFor="let item of cart.items">  
-    <cart-item [item]=item></cart-item>
-</div>
+<form  #cartForm="ngForm" (ngSubmit)="onSubmit(cartForm)" >
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <cart-item [setSubmitType]=setSubmitType *ngFor="let item of cart.items" [item]=item></cart-item>
+        </tbody>
+    </table>
+</form>

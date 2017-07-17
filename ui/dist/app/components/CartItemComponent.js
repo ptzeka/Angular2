@@ -13,12 +13,15 @@ var core_1 = require("@angular/core");
 var CartItemModel_1 = require("../models/CartItemModel");
 var CartItemComponent = (function () {
     function CartItemComponent() {
-        console.log(this.item);
     }
     __decorate([
         core_1.Input(),
         __metadata("design:type", CartItemModel_1.CartItemModel)
     ], CartItemComponent.prototype, "item", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Function)
+    ], CartItemComponent.prototype, "setSubmitType", void 0);
     CartItemComponent = __decorate([
         core_1.Component({
             selector: 'cart-item',

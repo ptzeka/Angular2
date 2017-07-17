@@ -12,6 +12,7 @@ require("reflect-metadata");
 var router_1 = require("@angular/router");
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var forms_1 = require("@angular/forms");
 //pages
 var MasterComponent_1 = require("./components/MasterComponent");
 var CartComponent_1 = require("./components/CartComponent");
@@ -45,6 +46,7 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
+                forms_1.FormsModule,
                 router_1.RouterModule.forRoot(appRoutes, { enableTracing: false } // <-- debugging purposes only
                 )
             ],

@@ -89,7 +89,16 @@ var CartService = (function () {
     };
     CartService.prototype.updateCartAsync = function (request) {
         return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
             return __generator(this, function (_a) {
+                request.items.forEach(function (item) {
+                    var match = _this.cart.items.filter(function (it) { return it.itemKey == item.itemKey; })[0];
+                    if (match) {
+                        match.quantity = item.quantity;
+                        match.price.extendedPrice = item.quantity * match.price.unitPrice;
+                        match.price.extendedPriceFormatted = "$" + match.price.extendedPrice;
+                    }
+                });
                 return [2 /*return*/, this.cart];
             });
         });

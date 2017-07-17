@@ -5,6 +5,7 @@ import 'reflect-metadata';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 //pages
 import { MasterComponent } from './components/MasterComponent';
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only

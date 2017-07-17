@@ -46,10 +46,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var CartService_1 = require("../services/CartService");
+var CartModel_1 = require("../models/CartModel");
 var CartComponent = (function () {
     function CartComponent(cartService) {
-        this.name = 'World';
         this._cartService = cartService;
+        this.submitType = "";
         this.initAsync();
     }
     CartComponent.prototype.initAsync = function () {
@@ -64,6 +65,23 @@ var CartComponent = (function () {
                 });
                 return [2 /*return*/];
             });
+        });
+    };
+    CartComponent.prototype.setSubmitType = function (value) {
+        console.log(this);
+        this.submitType = value;
+    };
+    CartComponent.prototype.onSubmit = function (event) {
+        console.log(this);
+    };
+    CartComponent.prototype.update = function (item) {
+        var _this = this;
+        var model = new CartModel_1.CartModel();
+        model.cartKey = this.cart.cartKey;
+        model.items = [item];
+        this._cartService.updateCartAsync(model)
+            .then(function (cart) {
+            _this.cart = cart;
         });
     };
     CartComponent = __decorate([
